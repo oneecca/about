@@ -38,13 +38,12 @@
   <body>
     <div id="text-info"></div>
 <script>
-var go = "http://192.168.43.248:16080/a",
-    start = 'Connecting to Smart Home',
+var start = 'Connecting to Smart Home',
     start1 = 'Connecting to Smart Home .',
     start2 = 'Connecting to Smart Home ..',
     start3 = 'Connecting to Smart Home ...',
     ln = '_____________',
-    err1 = 'Connection fails!',
+    err1 = 'Connection Error!',
     err2 = 'mungkin kamu gak terhubung ke wifi Oneecca?';
 
     document.getElementById("text-info").innerHTML =
@@ -69,19 +68,8 @@ var go = "http://192.168.43.248:16080/a",
       +'<i class="fa fa-smile-o" aria-hidden="true"></i></div>';
     }, 350 ) ;
 
-    setInterval(function () {
-      var xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          var res = this.responseText;
-          if( res == 'OK'){
-            window.location = ('http://192.168.43.248:16080/kost');
-          }
-        }
-
-      };
-      xhttp.open("GET", go, true);
-      xhttp.send();
+    setTimeout(function () {
+      window.location = ('http://192.168.43.248:16080/kost');
     }, 350 ) ;
 
     setTimeout(function () {

@@ -1,0 +1,102 @@
+<!DOCTYPE HTML><html><head>
+  <title>Oneecca Smart Kost</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+  body {
+    font-weight: 10;
+    font-size: 20px;
+    width: auto;
+    margin-top: 30%;
+  }
+  .notif{
+    font-family: monospace;
+    padding: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom:20px;
+    border:1px solid transparent;
+    border-radius:4px
+  }
+
+  .success{
+    color: darkgreen /*#3c763d*/;
+    background-color:#dff0d8;
+    border-color:#d6e9c6;
+  }
+
+  .danger{
+    color: crimson /*#a94442*/;
+    background-color:#f2dede;
+    border-color:#ebccd1
+  }
+
+  </style>
+  <link rel="shortcut icon" href="https://aoicomputers.github.io/ai/favicon.ico">
+    <link rel="apple-touch-icon" href="https://aoicomputers.github.io/ai/favicon.ico">
+    <link rel="icon" sizes="192x192" href="https://aoicomputers.github.io/ai/favicon.ico">
+  </head>
+  <body>
+    <div id="text-info"></div>
+<script>
+var go = "http://192.168.43.248:16080/a",
+    start = 'Connecting to Smart Home',
+    start1 = 'Connecting to Smart Home .',
+    start2 = 'Connecting to Smart Home ..',
+    start3 = 'Connecting to Smart Home ...',
+    ln = '_____________',
+    err1 = 'Connection fails!',
+    err2 = 'mungkin kamu gak terhubung ke wifi Oneecca?';
+
+    document.getElementById("text-info").innerHTML =
+    '<div class="notif success">'+start+'<i class="fa fa-smile-o" aria-hidden="true"></i></div>';
+
+    setTimeout(function () {
+      document.getElementById("text-info").innerHTML =
+      '<div class="notif success">'+
+      start1
+      +'<i class="fa fa-smile-o" aria-hidden="true"></i></div>';
+    }, 100 ) ;
+    setTimeout(function () {
+      document.getElementById("text-info").innerHTML =
+      '<div class="notif success">'+
+      start2
+      +'<i class="fa fa-smile-o" aria-hidden="true"></i></div>';
+    }, 200 ) ;
+    setTimeout(function () {
+      document.getElementById("text-info").innerHTML =
+      '<div class="notif success">'+
+      start3
+      +'<i class="fa fa-smile-o" aria-hidden="true"></i></div>';
+    }, 350 ) ;
+
+    setInterval(function () {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          var res = this.responseText;
+          if( res == 'OK'){
+            window.location = ('http://192.168.43.248:16080/kost');
+          }
+        }
+
+      };
+      xhttp.open("GET", go, true);
+      xhttp.send();
+    }, 350 ) ;
+
+    setTimeout(function () {
+
+      document.getElementById("text-info").innerHTML =
+      '<div class="notif danger"><br>'+
+      err1
+      +'<br>'+
+      ln
+      +'<br><br>'+
+      err2
+      +'<br><br>'
+      +'<i class="fa fa-smile-o" aria-hidden="true"></i></div>';
+
+    }, 3000 ) ;
+
+</script>
+</body></html>
